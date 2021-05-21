@@ -586,8 +586,8 @@ train[train['brand_name']=='Missing']['name']
 
 #on doit séléctionner train[train['brand_name']=='Missing']['name']
 #a ne pas executer
-train[train['brand_name']=='Missing']['brand_name']=train[train['brand_name']=='Missing']['name'].apply(replace_train)
-train[train['brand_name']=='Missing']['brand_name']=train[train['brand_name']=='Missing']['name'].apply(replace_test)
+#train[train['brand_name']=='Missing']['brand_name']=train[train['brand_name']=='Missing']['name'].apply(replace_train)
+#train[train['brand_name']=='Missing']['brand_name']=train[train['brand_name']=='Missing']['name'].apply(replace_test)
 
 
 # In[36]:
@@ -1943,18 +1943,6 @@ yp1
 # ## 12- Pycaret
 # 
 
-# In[134]:
-
-
-conda create pycaret python=3.6
-
-
-# In[129]:
-
-
-get_ipython().system('pip install CMake')
-
-
 # In[146]:
 
 
@@ -2000,19 +1988,23 @@ model_fs = mreg.fit(X_train_selected, Y_train)
 pickle.dump(mreg, open('modelreg.pkl','wb'))
 
 
-# In[226]:
+# In[229]:
 
 
-from flask import Flask
+from flask import Flask, render_template, request
 
-app = Flask(__name__)   
+app = Flask(__name__) 
+
 @app.route('/') 
 
 def sample_fun():      
     return "Home.html"  
+
 if __name__ == "__main__":      
 
-    app.run(host ='0.0.0.0', port = 5002, debug = True)
+    #app.run(host ='0.0.0.0', port = 5002, debug = True)
+    app.debug = True
+    app.run()
 
 
 # In[224]:
